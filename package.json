@@ -12,10 +12,6 @@
     "url": "https://github.com/alexmf91/polygon-launchpad.git"
   },
   "license": "MIT",
-  "engines": {
-    "node": "^18.17.0",
-    "yarn": "^3.4.1"
-  },
   "packageManager": "yarn@3.4.1",
   "scripts": {
     "dev": "next dev",
