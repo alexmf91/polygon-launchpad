@@ -9,6 +9,8 @@ const config = createConfig(
     appName: 'Polygon Launchpad',
     appDescription:
       'Discover and participate in the most promising token presales on the Polygon network.',
+    appUrl: 'https://polygon-launchpad.vercel.app',
+    appIcon: 'https://polygon-launchpad.vercel.app/favicon.svg',
     chains: [polygonMumbai],
   })
 );
