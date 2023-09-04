@@ -17,7 +17,7 @@ export default function useStageEndTime(
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
 
-  const getStageEntTime = async () => {
+  const getStageEndTime = async () => {
     if (blockStart === undefined || stageBlocks === undefined) {
       setError(new Error('Input values are undefined'));
       return;
@@ -42,7 +42,7 @@ export default function useStageEndTime(
   };
 
   useEffect(() => {
-    getStageEntTime();
+    getStageEndTime();
   }, [blockStart, stageBlocks]);
 
   return { stageEndTime, loading, error };
