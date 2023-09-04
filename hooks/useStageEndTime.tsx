@@ -1,3 +1,4 @@
+import getEstimatedBlockCountdown from '@app/utils';
 import { useEffect, useState } from 'react';
 import { usePublicClient } from 'wagmi';
 
@@ -25,12 +26,12 @@ export default function useStageEndTime(
     try {
       setLoading(true);
 
-      const blockInfo = await publicClient.getBlock({
-        blockNumber: blockStart,
-      });
+      const currentBlock = await publicClient.getBlock();
+
+      const estimatedEndTime = await getEstimatedBlockCountdown(blockStart + blockDuration);
 
       const currentStageEndTime = new Date(
-        (Number(blockInfo.timestamp) + Number(blockDuration) * 2) * 1000
+        (Number(currentBlock.timestamp) + Number(estimatedEndTime)) * 1000
       );
 
       setStageEndTime(currentStageEndTime);
