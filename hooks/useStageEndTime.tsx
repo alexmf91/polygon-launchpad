@@ -10,7 +10,7 @@ type Output = {
 
 export default function useStageEndTime(
   blockStart: bigint | undefined,
-  blockDuration: bigint | undefined
+  stageBlocks: bigint | undefined
 ): Output {
   const publicClient = usePublicClient();
   const [stageEndTime, setStageEndTime] = useState<Date | null>(null);
@@ -18,7 +18,7 @@ export default function useStageEndTime(
   const [error, setError] = useState<Error | null>(null);
 
   const getStageEntTime = async () => {
-    if (blockStart === undefined || blockDuration === undefined) {
+    if (blockStart === undefined || stageBlocks === undefined) {
       setError(new Error('Input values are undefined'));
       return;
     }
@@ -27,8 +27,7 @@ export default function useStageEndTime(
       setLoading(true);
 
       const currentBlock = await publicClient.getBlock();
-
-      const estimatedEndTime = await getEstimatedBlockCountdown(blockStart + blockDuration);
+      const estimatedEndTime = await getEstimatedBlockCountdown(blockStart + stageBlocks);
 
       const currentStageEndTime = new Date(
         (Number(currentBlock.timestamp) + Number(estimatedEndTime)) * 1000
@@ -44,7 +43,7 @@ export default function useStageEndTime(
 
   useEffect(() => {
     getStageEntTime();
-  }, [blockStart, blockDuration]);
+  }, [blockStart, stageBlocks]);
 
   return { stageEndTime, loading, error };
 }
