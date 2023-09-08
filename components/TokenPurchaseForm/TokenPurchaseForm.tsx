@@ -117,6 +117,7 @@ export default function TokenPurchaseForm() {
         message: "You've successfully purchased tokens!",
         color: 'green',
       });
+      form.reset();
     }
     if (isTransactionError) {
       notifications.show({
