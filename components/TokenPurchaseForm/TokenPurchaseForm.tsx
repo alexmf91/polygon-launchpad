@@ -145,7 +145,7 @@ export default function TokenPurchaseForm() {
             type="number"
             min={0}
             step={0.05}
-            description={`balance: ${balanceMatic?.formatted}`}
+            description={isConnected && `balance: ${balanceMatic?.formatted}`}
             value={form.values.amountMatic ?? ''}
             onChange={(event) => {
               handleMaticAmountChange(parseFloat(event.target.value));
@@ -157,7 +157,7 @@ export default function TokenPurchaseForm() {
           <TextInput
             wrapperProps={{ sx: classes.inputWrapper }}
             label={<TSTKTextInputLabel />}
-            description={`balance: ${balanceTSTK?.formatted}`}
+            description={isConnected && `balance: ${balanceTSTK?.formatted}`}
             placeholder="0.0"
             type="number"
             min={0}
